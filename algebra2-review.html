@@ -1,0 +1,1057 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Algebra II — Final Exam Review</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&family=DM+Serif+Display&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+<style>
+:root {
+  --bg: #0f0f13;
+  --bg2: #16161d;
+  --bg3: #1e1e28;
+  --bg4: #252532;
+  --border: rgba(255,255,255,0.08);
+  --border2: rgba(255,255,255,0.14);
+  --text: #f0eeff;
+  --text2: #9b99b8;
+  --text3: #5e5c7a;
+  --purple: #8b7ff0;
+  --purple2: #6c5fe0;
+  --purple3: #3d3580;
+  --purple-bg: rgba(139,127,240,0.12);
+  --purple-bg2: rgba(139,127,240,0.2);
+  --green: #4ade80;
+  --green-bg: rgba(74,222,128,0.1);
+  --amber: #fbbf24;
+  --amber-bg: rgba(251,191,36,0.1);
+  --red: #f87171;
+  --red-bg: rgba(248,113,113,0.1);
+  --teal: #2dd4bf;
+  --teal-bg: rgba(45,212,191,0.1);
+  --radius: 12px;
+  --radius-sm: 8px;
+  --sidebar-w: 230px;
+  --font: 'DM Sans', sans-serif;
+  --mono: 'DM Mono', monospace;
+  --serif: 'DM Serif Display', serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;overflow:hidden}
+body{font-family:var(--font);background:var(--bg);color:var(--text);font-size:15px;line-height:1.6}
+
+/* LAYOUT */
+.app{display:flex;height:100vh}
+.sidebar{width:var(--sidebar-w);min-width:var(--sidebar-w);background:var(--bg2);border-right:1px solid var(--border);display:flex;flex-direction:column;overflow-y:auto;overflow-x:hidden}
+.main{flex:1;overflow-y:auto;overflow-x:hidden}
+
+/* SIDEBAR */
+.sidebar-logo{padding:20px 20px 16px;border-bottom:1px solid var(--border)}
+.sidebar-logo h1{font-family:var(--serif);font-size:18px;color:var(--text);font-weight:400;line-height:1.2}
+.sidebar-logo p{font-size:11px;color:var(--text3);margin-top:3px;letter-spacing:.04em}
+.sidebar-logo .badge{display:inline-block;font-size:10px;background:var(--purple-bg);color:var(--purple);border:1px solid rgba(139,127,240,0.3);border-radius:4px;padding:1px 6px;margin-top:6px;font-family:var(--mono)}
+
+.nav-group{padding:10px 0}
+.nav-label{font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);padding:6px 16px 4px}
+.nav-btn{display:flex;align-items:center;gap:9px;width:100%;padding:8px 16px;font-size:13px;color:var(--text2);background:none;border:none;cursor:pointer;text-align:left;transition:all .15s;position:relative;font-family:var(--font)}
+.nav-btn:hover{color:var(--text);background:rgba(255,255,255,0.04)}
+.nav-btn.active{color:var(--purple);background:var(--purple-bg)}
+.nav-btn.active::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--purple);border-radius:0 2px 2px 0}
+.nav-btn i{font-size:16px;opacity:.7;width:18px;flex-shrink:0}
+.nav-btn.active i{opacity:1}
+
+/* PAGE */
+.page{display:none;padding:32px 36px;min-height:100%}
+.page.active{display:block}
+.page-header{margin-bottom:28px}
+.page-title{font-family:var(--serif);font-size:28px;font-weight:400;color:var(--text);line-height:1.2}
+.page-sub{font-size:13px;color:var(--text3);margin-top:6px}
+
+/* CARDS */
+.card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:18px 20px;margin-bottom:14px}
+.card-sm{background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius-sm);padding:13px 15px}
+.card h2{font-size:15px;font-weight:500;color:var(--text);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.card h3{font-size:13px;font-weight:500;color:var(--text2);margin:14px 0 7px}
+.card p{font-size:13px;color:var(--text2);margin-bottom:8px;line-height:1.6}
+.card-label{font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--purple);margin-bottom:6px}
+.card-mono{font-family:var(--mono);font-size:12px;color:var(--text);line-height:1.9}
+.card-note{font-size:11px;color:var(--text3);margin-top:5px}
+
+/* GRID */
+.grid{display:grid;gap:10px}
+.grid-2{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.grid-3{grid-template-columns:repeat(auto-fit,minmax(160px,1fr))}
+.grid-4{grid-template-columns:repeat(auto-fit,minmax(140px,1fr))}
+.grid-unit{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+
+/* FORMULA BOX */
+.formula{background:var(--bg);border:1px solid var(--border2);border-radius:var(--radius-sm);padding:11px 15px;font-family:var(--mono);font-size:13px;color:var(--teal);margin:8px 0;line-height:1.8}
+
+/* TAGS */
+.tag{display:inline-block;font-size:11px;padding:2px 9px;border-radius:20px;margin:2px;font-weight:500}
+.tag-purple{background:var(--purple-bg);color:var(--purple);border:1px solid rgba(139,127,240,0.25)}
+.tag-green{background:var(--green-bg);color:var(--green)}
+.tag-amber{background:var(--amber-bg);color:var(--amber)}
+.tag-red{background:var(--red-bg);color:var(--red)}
+
+/* WARN BOX */
+.warn{background:var(--amber-bg);border:1px solid rgba(251,191,36,0.2);border-radius:var(--radius-sm);padding:11px 14px;font-size:13px;color:var(--amber);display:flex;gap:9px;align-items:flex-start;margin:10px 0}
+.warn i{margin-top:1px;flex-shrink:0}
+
+/* BULLET LIST */
+.blist{list-style:none;padding:0}
+.blist li{font-size:13px;color:var(--text2);padding:3px 0 3px 18px;position:relative;line-height:1.6}
+.blist li::before{content:"›";position:absolute;left:4px;color:var(--purple);font-size:14px}
+
+/* STEP LIST */
+.slist{list-style:none;padding:0;counter-reset:s}
+.slist li{counter-increment:s;display:flex;gap:11px;margin-bottom:9px;font-size:13px;color:var(--text2)}
+.slist li::before{content:counter(s);display:flex;align-items:center;justify-content:center;min-width:22px;height:22px;border-radius:50%;background:var(--purple3);color:var(--purple);font-size:11px;font-weight:600;margin-top:1px;flex-shrink:0;font-family:var(--mono)}
+
+/* DRIVRS TABLE */
+.drivrs-row{display:grid;grid-template-columns:30px 1fr;gap:8px 14px;align-items:start;font-size:13px;padding:6px 0}
+.drivrs-letter{font-family:var(--mono);font-size:16px;font-weight:500;color:var(--purple)}
+
+/* TABS */
+.tabs{display:flex;gap:2px;border-bottom:1px solid var(--border);margin-bottom:20px;overflow-x:auto;padding-bottom:0}
+.tab{padding:8px 14px;font-size:13px;color:var(--text3);background:none;border:none;cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap;transition:all .15s;font-family:var(--font);margin-bottom:-1px}
+.tab:hover{color:var(--text2)}
+.tab.active{color:var(--purple);border-bottom-color:var(--purple)}
+
+/* UNIT CARDS */
+.unit-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:16px 18px;cursor:pointer;transition:all .2s;position:relative;overflow:hidden}
+.unit-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,var(--purple-bg),transparent);opacity:0;transition:opacity .2s}
+.unit-card:hover{border-color:var(--border2);transform:translateY(-1px)}
+.unit-card:hover::before{opacity:1}
+.unit-card .uc-num{font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--purple);margin-bottom:5px;font-family:var(--mono)}
+.unit-card .uc-name{font-size:14px;font-weight:500;color:var(--text)}
+.unit-card .uc-topics{font-size:11px;color:var(--text3);margin-top:4px;line-height:1.5}
+
+/* PRACTICE */
+.pcard{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:20px;margin-bottom:14px;transition:border-color .15s}
+.pcard:hover{border-color:var(--border2)}
+.pcard .qmeta{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.pcard .qnum{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--text3);font-family:var(--mono)}
+.pcard .qtxt{font-size:15px;color:var(--text);margin-bottom:16px;font-weight:400;line-height:1.5}
+.pcard .pbtn-row{display:flex;gap:8px;flex-wrap:wrap}
+.pbtn{padding:7px 16px;border-radius:var(--radius-sm);font-size:12px;cursor:pointer;font-family:var(--font);transition:all .15s;font-weight:500}
+.pbtn-hint{background:none;border:1px solid var(--border2);color:var(--text2)}
+.pbtn-hint:hover{border-color:var(--amber);color:var(--amber)}
+.pbtn-ans{background:var(--purple2);border:1px solid var(--purple2);color:#fff}
+.pbtn-ans:hover{background:var(--purple);border-color:var(--purple)}
+.hint-box{display:none;margin-top:12px;padding:12px 14px;background:var(--amber-bg);border-radius:var(--radius-sm);border-left:3px solid var(--amber);font-size:13px;color:var(--text2)}
+.ans-box{display:none;margin-top:12px;padding:14px;background:var(--green-bg);border-radius:var(--radius-sm);border-left:3px solid var(--green);font-size:13px;color:var(--text2);line-height:1.7}
+
+/* FLASHCARDS */
+.flash-wrap{perspective:1000px;height:220px;max-width:520px;margin:0 auto 24px;cursor:pointer}
+.flash-card{width:100%;height:100%;position:relative;transform-style:preserve-3d;transition:transform .5s cubic-bezier(.4,.2,.2,1)}
+.flash-card.flipped{transform:rotateY(180deg)}
+.flash-f,.flash-b{position:absolute;inset:0;backface-visibility:hidden;border-radius:var(--radius);display:flex;align-items:center;justify-content:center;padding:28px;flex-direction:column;gap:10px}
+.flash-f{background:var(--bg2);border:1px solid var(--border2)}
+.flash-b{background:var(--bg3);border:1px solid rgba(139,127,240,0.3);transform:rotateY(180deg)}
+.flash-label{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);font-family:var(--mono)}
+.flash-q{font-size:17px;font-weight:500;color:var(--text);text-align:center;font-family:var(--mono);line-height:1.4}
+.flash-a{font-size:15px;font-weight:500;color:var(--purple);text-align:center;font-family:var(--mono);line-height:1.5}
+.flash-hint{font-size:11px;color:var(--text3);margin-top:6px}
+.flash-prog{text-align:center;font-size:12px;color:var(--text3);margin-bottom:16px;font-family:var(--mono)}
+.flash-controls{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:16px}
+.fctrl{padding:8px 20px;border:1px solid var(--border2);border-radius:var(--radius-sm);background:none;color:var(--text2);font-size:13px;cursor:pointer;font-family:var(--font);transition:all .15s}
+.fctrl:hover{background:var(--bg3);color:var(--text)}
+.fctrl.primary{background:var(--purple2);border-color:var(--purple2);color:#fff}
+.fctrl.primary:hover{background:var(--purple)}
+.topic-filter{display:flex;flex-wrap:wrap;gap:7px;justify-content:center;margin-bottom:22px}
+.topic-btn{font-size:12px;padding:5px 13px;border:1px solid var(--border);border-radius:20px;background:none;color:var(--text3);cursor:pointer;font-family:var(--font);transition:all .15s}
+.topic-btn:hover{border-color:var(--border2);color:var(--text2)}
+.topic-btn.active{background:var(--purple-bg2);border-color:var(--purple);color:var(--purple)}
+
+/* MEMORIZE */
+.memo-block{margin-bottom:28px}
+.memo-block > h2{font-size:15px;font-weight:500;color:var(--text);margin-bottom:12px;display:flex;align-items:center;gap:8px;padding-bottom:10px;border-bottom:1px solid var(--border)}
+.memo-block > h2 i{color:var(--purple);font-size:17px}
+
+/* UNIT PAGE */
+.back-btn{display:inline-flex;align-items:center;gap:7px;font-size:13px;color:var(--text3);background:none;border:none;cursor:pointer;margin-bottom:20px;font-family:var(--font);transition:color .15s;padding:0}
+.back-btn:hover{color:var(--purple)}
+
+/* UNIT CIRCLE TABLE */
+.uc-table{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:7px}
+.uc-cell{background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius-sm);padding:10px 12px}
+.uc-deg{font-size:10px;font-weight:600;color:var(--purple);font-family:var(--mono);margin-bottom:3px}
+.uc-coords{font-size:12px;color:var(--text);font-family:var(--mono)}
+
+/* ALERT */
+.alert{background:var(--red-bg);border:1px solid rgba(248,113,113,0.2);border-radius:var(--radius);padding:16px 20px;margin-bottom:20px}
+.alert h3{font-size:14px;font-weight:500;color:var(--red);margin-bottom:8px;display:flex;align-items:center;gap:7px}
+
+/* ASTC BOX */
+.astc{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border-radius:var(--radius-sm);overflow:hidden;margin:10px 0}
+.astc-cell{background:var(--bg3);padding:12px;font-size:12px;font-family:var(--mono)}
+.astc-cell strong{display:block;color:var(--purple);margin-bottom:2px;font-size:13px}
+
+/* SCROLLBAR */
+::-webkit-scrollbar{width:5px;height:5px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--border2);border-radius:3px}
+::-webkit-scrollbar-thumb:hover{background:var(--text3)}
+
+/* RESPONSIVE */
+@media(max-width:700px){
+  .sidebar{position:fixed;left:-var(--sidebar-w);z-index:100;transition:left .25s;left:-240px}
+  .sidebar.open{left:0}
+  .page{padding:20px 18px}
+  .hamburger{display:flex}
+}
+.hamburger{display:none;position:fixed;top:14px;right:16px;z-index:200;background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:8px;cursor:pointer;color:var(--text)}
+
+/* TWO COL */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:560px){.two-col{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<button class="hamburger" onclick="toggleSidebar()" aria-label="Menu"><i class="ti ti-menu-2" style="font-size:18px"></i></button>
+
+<div class="app">
+<!-- SIDEBAR -->
+<nav class="sidebar" id="sidebar">
+  <div class="sidebar-logo">
+    <h1>Algebra II</h1>
+    <p>Final Exam Review</p>
+    <span class="badge">2025–2026</span>
+  </div>
+
+  <div class="nav-group">
+    <div class="nav-label">Navigate</div>
+    <button class="nav-btn active" onclick="showPage('home')" id="nav-home"><i class="ti ti-home"></i>Overview</button>
+    <button class="nav-btn" onclick="showPage('memorize')" id="nav-memorize"><i class="ti ti-brain"></i>Must Memorize</button>
+    <button class="nav-btn" onclick="showPage('practice')" id="nav-practice"><i class="ti ti-pencil"></i>Practice Problems</button>
+    <button class="nav-btn" onclick="showPage('flashcards')" id="nav-flashcards"><i class="ti ti-cards"></i>Flashcards</button>
+  </div>
+
+  <div class="nav-group">
+    <div class="nav-label">Units</div>
+    <button class="nav-btn" onclick="showUnit(0)" id="nav-u0"><i class="ti ti-line"></i>I. Intro & Lines</button>
+    <button class="nav-btn" onclick="showUnit(1)" id="nav-u1"><i class="ti ti-trending-up"></i>II. Quadratics</button>
+    <button class="nav-btn" onclick="showUnit(2)" id="nav-u2"><i class="ti ti-table"></i>III. Systems/Matrices</button>
+    <button class="nav-btn" onclick="showUnit(3)" id="nav-u3"><i class="ti ti-wave-sine"></i>IV. Polynomials</button>
+    <button class="nav-btn" onclick="showUnit(4)" id="nav-u4"><i class="ti ti-divide"></i>V. Rational Fns</button>
+    <button class="nav-btn" onclick="showUnit(5)" id="nav-u5"><i class="ti ti-square-root"></i>VI. Radicals</button>
+    <button class="nav-btn" onclick="showUnit(6)" id="nav-u6"><i class="ti ti-function"></i>VIb. Fn Combos</button>
+    <button class="nav-btn" onclick="showUnit(7)" id="nav-u7"><i class="ti ti-chart-line"></i>VII. Exp & Log</button>
+    <button class="nav-btn" onclick="showUnit(8)" id="nav-u8"><i class="ti ti-sum"></i>VIII. Sequences</button>
+    <button class="nav-btn" onclick="showUnit(9)" id="nav-u9"><i class="ti ti-angle"></i>IX. Trig</button>
+  </div>
+</nav>
+
+<!-- MAIN -->
+<main class="main">
+
+<!-- HOME -->
+<div class="page active" id="page-home">
+  <div class="page-header">
+    <div class="page-title">Final Exam Review</div>
+    <div class="page-sub">9 units · Click a card to study it, or use the sidebar</div>
+  </div>
+
+  <div class="alert">
+    <h3><i class="ti ti-alert-triangle"></i>Top priority before exam day</h3>
+    <div>
+      <span class="tag tag-red">Unit circle — all 16 angles</span>
+      <span class="tag tag-red">Quadratic formula</span>
+      <span class="tag tag-red">Log laws (5 rules)</span>
+      <span class="tag tag-red">Sum/Diff of cubes</span>
+      <span class="tag tag-red">Powers of i cycle</span>
+      <span class="tag tag-red">Compound interest formulas</span>
+      <span class="tag tag-red">DRIVRS steps</span>
+      <span class="tag tag-red">Infinite geometric sum</span>
+      <span class="tag tag-red">Inverse trig domains/ranges</span>
+      <span class="tag tag-red">LRB end behavior rules</span>
+    </div>
+  </div>
+
+  <div class="grid grid-unit">
+    <div class="unit-card" onclick="showUnit(0)"><div class="uc-num">Unit I</div><div class="uc-name">Intro & Lines</div><div class="uc-topics">Sets, equations of lines, functions, transformations, piecewise, absolute value, inequalities</div></div>
+    <div class="unit-card" onclick="showUnit(1)"><div class="uc-num">Unit II</div><div class="uc-name">Quadratics</div><div class="uc-topics">3 forms, complex numbers, powers of i, solving quadratic equations</div></div>
+    <div class="unit-card" onclick="showUnit(2)"><div class="uc-num">Unit III</div><div class="uc-name">Systems & Matrices</div><div class="uc-topics">Linear systems, matrix arithmetic, determinant, inverse, quadratic systems</div></div>
+    <div class="unit-card" onclick="showUnit(3)"><div class="uc-num">Unit IV</div><div class="uc-name">Polynomials</div><div class="uc-topics">Factoring, dividing, rational root theorem, FTA, zeros, graphing</div></div>
+    <div class="unit-card" onclick="showUnit(4)"><div class="uc-num">Unit V</div><div class="uc-name">Rational Functions</div><div class="uc-topics">Simplifying, DRIVRS, asymptotes, sign charts, solving, modeling</div></div>
+    <div class="unit-card" onclick="showUnit(5)"><div class="uc-num">Unit VI</div><div class="uc-name">Radicals & Exponents</div><div class="uc-topics">Fractional exponents, exponent rules, radical equations, graphing roots</div></div>
+    <div class="unit-card" onclick="showUnit(6)"><div class="uc-num">Unit VIb</div><div class="uc-name">Function Combos</div><div class="uc-topics">Operations on functions, composition, inverse functions, domain</div></div>
+    <div class="unit-card" onclick="showUnit(7)"><div class="uc-num">Unit VII</div><div class="uc-name">Exp & Logarithms</div><div class="uc-topics">Growth/decay, interest, log laws, change of base, solving equations, modeling</div></div>
+    <div class="unit-card" onclick="showUnit(8)"><div class="uc-num">Unit VIII</div><div class="uc-name">Sequences & Series</div><div class="uc-topics">Arithmetic, geometric, sigma notation, partial & infinite sums</div></div>
+    <div class="unit-card" onclick="showUnit(9)"><div class="uc-num">Unit IX</div><div class="uc-name">Trigonometry</div><div class="uc-topics">SOHCAHTOA, unit circle, graphing, inverse trig, law of sines/cosines</div></div>
+  </div>
+</div>
+
+<!-- MUST MEMORIZE -->
+<div class="page" id="page-memorize">
+  <div class="page-header">
+    <div class="page-title">Must Memorize</div>
+    <div class="page-sub">Every formula and fact you need to know cold — no calculator on many of these</div>
+  </div>
+
+  <div class="memo-block">
+    <h2><i class="ti ti-trending-up"></i>Quadratics</h2>
+    <div class="grid grid-2">
+      <div class="card-sm"><div class="card-label">Quadratic Formula</div><div class="card-mono">x = (−b ± √(b²−4ac)) / 2a</div><div class="card-note">Discriminant: &gt;0 → 2 real; =0 → 1 real; &lt;0 → 2 complex</div></div>
+      <div class="card-sm"><div class="card-label">Vertex Form</div><div class="card-mono">f(x) = a(x − h)² + k<br>vertex = (h, k), axis: x = h</div></div>
+      <div class="card-sm"><div class="card-label">Standard → Vertex</div><div class="card-mono">h = −b/2a,  k = f(h)</div></div>
+      <div class="card-sm"><div class="card-label">Completing the Square</div><div class="card-mono">x²+bx → (x + b/2)² − (b/2)²</div></div>
+    </div>
+  </div>
+
+  <div class="memo-block">
+    <h2><i class="ti ti-infinity"></i>Complex Numbers — Powers of i</h2>
+    <div class="grid grid-2">
+      <div class="card-sm"><div class="card-label">Powers cycle of 4</div><div class="card-mono">i¹ = i<br>i² = −1<br>i³ = −i<br>i⁴ = 1  (then repeats)</div><div class="card-note">For iⁿ: divide n by 4, use remainder: 0→1, 1→i, 2→−1, 3→−i</div></div>
+      <div class="card-sm"><div class="card-label">Dividing Complex Numbers</div><div class="card-mono">Multiply by conjugate of denominator.<br>(a+bi)(a−bi) = a² + b²</div><div class="card-note">The denominator becomes a real number</div></div>
+    </div>
+  </div>
+
+  <div class="memo-block">
+    <h2><i class="ti ti-wave-sine"></i>Polynomial Factoring Formulas</h2>
+    <div class="grid grid-3">
+      <div class="card-sm"><div class="card-label">Difference of Squares</div><div class="card-mono">a² − b² = (a+b)(a−b)</div></div>
+      <div class="card-sm"><div class="card-label">Sum of Cubes</div><div class="card-mono">a³+b³ = (a+b)(a²−ab+b²)</div><div class="card-note">SOAP: Same, Opposite, Always Positive</div></div>
+      <div class="card-sm"><div class="card-label">Difference of Cubes</div><div class="card-mono">a³−b³ = (a−b)(a²+ab+b²)</div><div class="card-note">SOAP: Same, Opposite, Always Positive</div></div>
+      <div class="card-sm"><div class="card-label">FTA</div><div class="card-mono">Degree n → exactly n zeros<br>(counting multiplicity)</div><div class="card-note">Complex zeros come in conjugate pairs</div></div>
+      <div class="card-sm"><div class="card-label">Rational Root Theorem</div><div class="card-mono">±(factors of constant) / (factors of leading coeff)</div></div>
+      <div class="card-sm"><div class="card-label">Remainder Theorem</div><div class="card-mono">f(x) ÷ (x−c) → remainder = f(c)</div></div>
+    </div>
+  </div>
+
+  <div class="memo-block">
+    <h2><i class="ti ti-arrows-right-left"></i>End Behavior (LRB)</h2>
+    <div class="grid grid-4">
+      <div class="card-sm"><div class="card-label">Even, + leading</div><div class="card-mono">↗ ... ↗<br>both ends UP</div></div>
+      <div class="card-sm"><div class="card-label">Even, − leading</div><div class="card-mono">↘ ... ↘<br>both ends DOWN</div></div>
+      <div class="card-sm"><div class="card-label">Odd, + leading</div><div class="card-mono">↘ ... ↗<br>down left, up right</div></div>
+      <div class="card-sm"><div class="card-label">Odd, − leading</div><div class="card-mono">↗ ... ↘<br>up left, down right</div></div>
+    </div>
+  </div>
+
+  <div class="memo-block">
+    <h2><i class="ti ti-chart-line"></i>Exponential & Log Laws</h2>
+    <div class="grid grid-3">
+      <div class="card-sm"><div class="card-label">Product Rule</div><div class="card-mono">log(xy) = log x + log y</div></div>
+      <div class="card-sm"><div class="card-label">Quotient Rule</div><div class="card-mono">log(x/y) = log x − log y</div></div>
+      <div class="card-sm"><div class="card-label">Power Rule</div><div class="card-mono">log(xⁿ) = n · log x</div></div>
+      <div class="card-sm"><div class="card-label">Change of Base</div><div class="card-mono">log_b(x) = log x / log b<br>         = ln x / ln b</div></div>
+      <div class="card-sm"><div class="card-label">Basic Properties</div><div class="card-mono">log_b(b) = 1<br>log_b(1) = 0<br>log_b(bˣ) = x<br>b^(log_b x) = x</div></div>
+      <div class="card-sm"><div class="card-label">Interest Formulas</div><div class="card-mono">A = P(1 + r/n)^(nt)<br>A = Pe^(rt)  (continuous)</div><div class="card-note">e ≈ 2.718</div></div>
+    </div>
+  </div>
+
+  <div class="memo-block">
+    <h2><i class="ti ti-sum"></i>Sequences & Series</h2>
+    <div class="grid grid-3">
+      <div class="card-sm"><div class="card-label">Arithmetic — explicit</div><div class="card-mono">aₙ = a₁ + (n−1)d</div><div class="card-note">d = common difference</div></div>
+      <div class="card-sm"><div class="card-label">Arithmetic — partial sum</div><div class="card-mono">Sₙ = n(a₁ + aₙ) / 2</div></div>
+      <div class="card-sm"><div class="card-label">Geometric — explicit</div><div class="card-mono">aₙ = a₁ · rⁿ⁻¹</div><div class="card-note">r = common ratio</div></div>
+      <div class="card-sm"><div class="card-label">Geometric — partial sum</div><div class="card-mono">Sₙ = a₁(1 − rⁿ) / (1 − r)</div></div>
+      <div class="card-sm"><div class="card-label">Infinite geometric sum</div><div class="card-mono">S = a₁ / (1 − r)<br>only when |r| &lt; 1</div><div class="card-note">If |r| ≥ 1: diverges (no sum)</div></div>
+    </div>
+  </div>
+
+  <div class="memo-block">
+    <h2><i class="ti ti-table"></i>Matrices</h2>
+    <div class="grid grid-3">
+      <div class="card-sm"><div class="card-label">2×2 Determinant</div><div class="card-mono">det [[a,b],[c,d]] = ad − bc</div></div>
+      <div class="card-sm"><div class="card-label">2×2 Inverse</div><div class="card-mono">A⁻¹ = (1/det)·[[d,−b],[−c,a]]</div><div class="card-note">Swap main diagonal, negate off-diagonal, divide by det</div></div>
+      <div class="card-sm"><div class="card-label">Solving with Matrices</div><div class="card-mono">AX = B → X = A⁻¹B</div><div class="card-note">Order matters! Multiply A⁻¹ times B</div></div>
+    </div>
+  </div>
+
+  <div class="memo-block">
+    <h2><i class="ti ti-divide"></i>Rational Functions — DRIVRS</h2>
+    <div class="card">
+      <div class="drivrs-row"><div class="drivrs-letter">D</div><div style="font-size:13px;color:var(--text2)"><strong style="color:var(--text)">Domain</strong> — set denominator ≠ 0, find restrictions</div></div>
+      <div class="drivrs-row"><div class="drivrs-letter">R</div><div style="font-size:13px;color:var(--text2)"><strong style="color:var(--text)">Reduce</strong> — factor and cancel common factors (cancelled factors → holes!)</div></div>
+      <div class="drivrs-row"><div class="drivrs-letter">I</div><div style="font-size:13px;color:var(--text2)"><strong style="color:var(--text)">Intercepts</strong> — x-int: set numerator = 0; y-int: plug in x = 0</div></div>
+      <div class="drivrs-row"><div class="drivrs-letter">V</div><div style="font-size:13px;color:var(--text2)"><strong style="color:var(--text)">Vertical Asymptotes</strong> — zeros of the REDUCED denominator</div></div>
+      <div class="drivrs-row"><div class="drivrs-letter">R</div><div style="font-size:13px;color:var(--text2)"><strong style="color:var(--text)">Removable Discontinuities</strong> — holes at cancelled factors; find y by plugging into reduced form</div></div>
+      <div class="drivrs-row"><div class="drivrs-letter">S</div><div style="font-size:13px;color:var(--text2)"><strong style="color:var(--text)">Sign Chart</strong> — test intervals between x-intercepts and vertical asymptotes</div></div>
+      <div style="margin-top:14px;padding-top:14px;border-top:1px solid var(--border)">
+        <div class="card-label" style="margin-bottom:8px">Horizontal Asymptotes</div>
+        <ul class="blist">
+          <li>Degree top &lt; bottom → HA: y = 0</li>
+          <li>Degrees equal → HA: y = (leading coeff top) / (leading coeff bottom)</li>
+          <li>Degree top &gt; bottom → no HA (oblique asymptote)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="memo-block">
+    <h2><i class="ti ti-angle"></i>Unit Circle — All Special Angles</h2>
+    <div class="card" style="padding:16px 18px">
+      <p style="font-size:12px;color:var(--text3);margin-bottom:12px">Point = (cos θ, sin θ). Memorize Q1, then use ASTC for other quadrants.</p>
+      <div class="uc-table">
+        <div class="uc-cell"><div class="uc-deg">0°</div><div class="uc-coords">(1, 0)</div></div>
+        <div class="uc-cell"><div class="uc-deg">30°</div><div class="uc-coords">(√3/2, 1/2)</div></div>
+        <div class="uc-cell"><div class="uc-deg">45°</div><div class="uc-coords">(√2/2, √2/2)</div></div>
+        <div class="uc-cell"><div class="uc-deg">60°</div><div class="uc-coords">(1/2, √3/2)</div></div>
+        <div class="uc-cell"><div class="uc-deg">90°</div><div class="uc-coords">(0, 1)</div></div>
+        <div class="uc-cell"><div class="uc-deg">120°</div><div class="uc-coords">(−1/2, √3/2)</div></div>
+        <div class="uc-cell"><div class="uc-deg">135°</div><div class="uc-coords">(−√2/2, √2/2)</div></div>
+        <div class="uc-cell"><div class="uc-deg">150°</div><div class="uc-coords">(−√3/2, 1/2)</div></div>
+        <div class="uc-cell"><div class="uc-deg">180°</div><div class="uc-coords">(−1, 0)</div></div>
+        <div class="uc-cell"><div class="uc-deg">210°</div><div class="uc-coords">(−√3/2, −1/2)</div></div>
+        <div class="uc-cell"><div class="uc-deg">225°</div><div class="uc-coords">(−√2/2, −√2/2)</div></div>
+        <div class="uc-cell"><div class="uc-deg">240°</div><div class="uc-coords">(−1/2, −√3/2)</div></div>
+        <div class="uc-cell"><div class="uc-deg">270°</div><div class="uc-coords">(0, −1)</div></div>
+        <div class="uc-cell"><div class="uc-deg">300°</div><div class="uc-coords">(1/2, −√3/2)</div></div>
+        <div class="uc-cell"><div class="uc-deg">315°</div><div class="uc-coords">(√2/2, −√2/2)</div></div>
+        <div class="uc-cell"><div class="uc-deg">330°</div><div class="uc-coords">(√3/2, −1/2)</div></div>
+      </div>
+      <div class="astc" style="margin-top:14px">
+        <div class="astc-cell"><strong>Q1 — All +</strong>sin, cos, tan all positive</div>
+        <div class="astc-cell"><strong>Q2 — Sin +</strong>sin positive only</div>
+        <div class="astc-cell"><strong>Q3 — Tan +</strong>tan positive only</div>
+        <div class="astc-cell"><strong>Q4 — Cos +</strong>cos positive only</div>
+      </div>
+      <div style="font-size:11px;color:var(--text3);margin-top:8px;text-align:center">"All Students Take Calculus" → All, Sin, Tan, Cos</div>
+    </div>
+  </div>
+
+  <div class="memo-block">
+    <h2><i class="ti ti-function"></i>Inverse Trig — Domains & Ranges</h2>
+    <div class="grid grid-3">
+      <div class="card-sm"><div class="card-label">sin⁻¹(x)</div><div class="card-mono">Domain: [−1, 1]<br>Range: [−90°, 90°]</div><div class="card-note">Outputs only Q1 and Q4 angles</div></div>
+      <div class="card-sm"><div class="card-label">cos⁻¹(x)</div><div class="card-mono">Domain: [−1, 1]<br>Range: [0°, 180°]</div><div class="card-note">Outputs only Q1 and Q2 angles</div></div>
+      <div class="card-sm"><div class="card-label">tan⁻¹(x)</div><div class="card-mono">Domain: all reals<br>Range: (−90°, 90°)</div><div class="card-note">Open interval — never reaches ±90°</div></div>
+    </div>
+  </div>
+
+  <div class="memo-block">
+    <h2><i class="ti ti-wave-sine"></i>Trig Graphing & Identities</h2>
+    <div class="grid grid-2">
+      <div class="card-sm"><div class="card-label">General Form</div><div class="card-mono">y = a·sin(b(x−h)) + k</div><div class="card-note">|a|=amplitude, period=360°/b, h=phase shift, k=vertical shift</div></div>
+      <div class="card-sm"><div class="card-label">Pythagorean Identity</div><div class="card-mono">sin²θ + cos²θ = 1</div></div>
+      <div class="card-sm"><div class="card-label">Reciprocal Identities</div><div class="card-mono">csc θ = 1/sin θ<br>sec θ = 1/cos θ<br>cot θ = 1/tan θ</div></div>
+      <div class="card-sm"><div class="card-label">Law of Sines / Cosines</div><div class="card-mono">a/sin A = b/sin B = c/sin C<br>c² = a²+b²−2ab·cos C</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- PRACTICE PROBLEMS -->
+<div class="page" id="page-practice">
+  <div class="page-header">
+    <div class="page-title">Practice Problems</div>
+    <div class="page-sub">Work through each problem, then reveal the answer. Use hints if stuck.</div>
+  </div>
+
+  <div id="practice-container"></div>
+</div>
+
+<!-- FLASHCARDS -->
+<div class="page" id="page-flashcards">
+  <div class="page-header">
+    <div class="page-title">Flashcards</div>
+    <div class="page-sub">Click the card to flip it. Filter by topic or shuffle.</div>
+  </div>
+
+  <div class="topic-filter" id="topicFilter">
+    <button class="topic-btn active" onclick="setTopic('all',this)">All Topics</button>
+    <button class="topic-btn" onclick="setTopic('quadratics',this)">Quadratics</button>
+    <button class="topic-btn" onclick="setTopic('complex',this)">Complex #s</button>
+    <button class="topic-btn" onclick="setTopic('poly',this)">Polynomials</button>
+    <button class="topic-btn" onclick="setTopic('log',this)">Logs & Exp</button>
+    <button class="topic-btn" onclick="setTopic('trig',this)">Trig</button>
+    <button class="topic-btn" onclick="setTopic('seq',this)">Sequences</button>
+    <button class="topic-btn" onclick="setTopic('matrix',this)">Matrices</button>
+    <button class="topic-btn" onclick="setTopic('rational',this)">Rational Fns</button>
+  </div>
+
+  <div class="flash-prog" id="flashProg">Card 1 of 1</div>
+
+  <div class="flash-wrap" onclick="flipCard()">
+    <div class="flash-card" id="flashCard">
+      <div class="flash-f">
+        <div class="flash-label">Question — click to flip</div>
+        <div class="flash-q" id="flashQ">Loading...</div>
+      </div>
+      <div class="flash-b">
+        <div class="flash-label" style="color:var(--purple)">Answer</div>
+        <div class="flash-a" id="flashA">...</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="flash-controls">
+    <button class="fctrl" onclick="prevCard()"><i class="ti ti-arrow-left"></i> Prev</button>
+    <button class="fctrl primary" onclick="flipCard()">Flip</button>
+    <button class="fctrl" onclick="nextCard()">Next <i class="ti ti-arrow-right"></i></button>
+  </div>
+  <div style="text-align:center">
+    <button class="fctrl" onclick="shuffleCards()" style="font-size:12px"><i class="ti ti-refresh"></i> Shuffle</button>
+  </div>
+</div>
+
+<!-- UNIT DETAIL -->
+<div class="page" id="page-unit">
+  <button class="back-btn" onclick="showPage('home')"><i class="ti ti-arrow-left"></i> Back to Overview</button>
+  <div id="unitContent"></div>
+</div>
+
+</main>
+</div>
+
+<script>
+// ─── NAV ────────────────────────────────────────────────────────
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+  const nb = document.getElementById('nav-' + id);
+  if (nb) nb.classList.add('active');
+  closeSidebar();
+}
+function toggleSidebar(){document.getElementById('sidebar').classList.toggle('open')}
+function closeSidebar(){if(window.innerWidth<=700)document.getElementById('sidebar').classList.remove('open')}
+
+// ─── PRACTICE PROBLEMS ──────────────────────────────────────────
+const problems = [
+  {unit:'Quadratics',diff:'easy',q:'Solve: 2x² − 5x − 3 = 0',hint:'Try factoring: look for two numbers that multiply to (2)(−3)=−6 and add to −5. Split the middle term.',ans:'Factor: (2x+1)(x−3)=0 → x = −1/2 or x = 3'},
+  {unit:'Complex Numbers',diff:'easy',q:'Simplify: (3 + 2i)(1 − 4i)',hint:'FOIL it out. Remember i² = −1.',ans:'= 3−12i+2i−8i² = 3−10i−8(−1) = 11−10i'},
+  {unit:'Complex Numbers',diff:'medium',q:'Divide: (2 + i) ÷ (3 − 2i) — write in a+bi form',hint:'Multiply top and bottom by the conjugate of the denominator: (3+2i).',ans:'Multiply by (3+2i)/(3+2i): Numerator: (2+i)(3+2i)=6+4i+3i+2i²=4+7i. Denominator: 9+4=13. Answer: 4/13 + 7i/13'},
+  {unit:'Complex Numbers',diff:'easy',q:'Simplify: i⁵³',hint:'Divide 53 by 4 and look at the remainder.',ans:'53 ÷ 4 = 13 remainder 1 → i¹ = i'},
+  {unit:'Matrices',diff:'medium',q:'Find the inverse of A = [[2, 5], [1, 3]]',hint:'Find det = ad−bc first. Then swap a and d, negate b and c, multiply by 1/det.',ans:'det = (2)(3)−(5)(1) = 1. A⁻¹ = (1/1)·[[3,−5],[−1,2]] = [[3,−5],[−1,2]]'},
+  {unit:'Polynomials',diff:'medium',q:'Factor completely: x³ − 8',hint:'Difference of cubes: a³−b³. Here a = x, b = 2.',ans:'(x−2)(x²+2x+4). The second factor has no real roots (discriminant = 4−16 < 0).'},
+  {unit:'Polynomials',diff:'hard',q:'Find all zeros of f(x) = x³ − 2x² − 5x + 6',hint:'Use Rational Root Theorem: try ±1, ±2, ±3, ±6. Once you find a root, divide synthetically.',ans:'Test x=1: 1−2−5+6=0 ✓. Divide by (x−1): get x²−x−6=(x−3)(x+2). Zeros: x=1, x=3, x=−2'},
+  {unit:'Rational Functions',diff:'medium',q:'Find all asymptotes and holes of f(x) = (x²−4)/(x²−x−2)',hint:'Factor both fully. Cancel common factors → holes. Remaining denominator zeros → vertical asymptotes.',ans:'Num: (x+2)(x−2). Den: (x−2)(x+1). Hole at x=2 (y=4/3). Reduced: (x+2)/(x+1). VA: x=−1. HA: y=1 (equal degrees).'},
+  {unit:'Logarithms',diff:'medium',q:'Solve: log₂(x+3) + log₂(x−1) = 5',hint:'Combine using product rule. Then convert to exponential form.',ans:'log₂[(x+3)(x−1)]=5 → (x+3)(x−1)=32 → x²+2x−35=0 → (x+7)(x−5)=0. x=−7 is extraneous (log undefined). Answer: x=5'},
+  {unit:'Sequences',diff:'easy',q:'Find the sum of the infinite geometric series: 12 + 4 + 4/3 + ...',hint:'Find r = second/first. Since |r|<1, use S = a₁/(1−r).',ans:'r = 1/3. S = 12/(1−1/3) = 12/(2/3) = 18'},
+  {unit:'Trigonometry',diff:'medium',q:'Find ALL values of θ where sin θ = −√2/2, for 0° ≤ θ < 360°',hint:'Reference angle is 45°. Sin is negative in Q3 and Q4.',ans:'Ref angle = 45°. Q3: 180+45=225°. Q4: 360−45=315°. Answer: θ=225° and θ=315°'},
+  {unit:'Trigonometry',diff:'hard',q:'Evaluate without a calculator: cos(sin⁻¹(3/8))',hint:'Let θ=sin⁻¹(3/8), so sinθ=3/8. Draw right triangle: opp=3, hyp=8. Find adjacent.',ans:'adj = √(64−9) = √55. cos(θ) = adj/hyp = √55/8'},
+  {unit:'Radicals',diff:'medium',q:'Solve: √(2x+3) = x−1. Check for extraneous solutions.',hint:'Square both sides, solve the quadratic, then plug BOTH answers back into the original equation.',ans:'Square: 2x+3=(x−1)² → x²−4x−2=0 → x=2±√6. Check x=2−√6≈−0.45: RHS<0, extraneous. Answer: x=2+√6'},
+  {unit:'Exp & Log',diff:'hard',q:'How long to double $5,000 at 6% compounded continuously?',hint:'Use A=Pe^(rt). Set A=2P (doubled). Take ln of both sides.',ans:'2=e^(0.06t) → ln2=0.06t → t=ln2/0.06 ≈ 11.55 years'},
+  {unit:'Polynomials',diff:'medium',q:'Use synthetic division to divide (3x³−4x²+2x−1) by (x−2)',hint:'Use 2 (not −2) as the divisor in synthetic division. Write all coefficients: 3, −4, 2, −1.',ans:'Bring down 3. 3×2=6, −4+6=2. 2×2=4, 2+4=6. 6×2=12, −1+12=11. Quotient: 3x²+2x+6, Remainder: 11'},
+  {unit:'Systems',diff:'medium',q:'Solve the system: x² + y² = 25 and y = x+1',hint:'Substitute the second equation into the first. Solve the resulting quadratic.',ans:'x²+(x+1)²=25 → 2x²+2x−24=0 → x²+x−12=0 → (x+4)(x−3)=0. Solutions: (3,4) and (−4,−3)'},
+  {unit:'Functions',diff:'medium',q:'If f(x)=2x+1 and g(x)=x², find (f∘g)(3) and (g∘f)(3)',hint:'f∘g means f(g(x)). Evaluate g first, then f. g∘f means g(f(x)) — evaluate f first, then g.',ans:'(f∘g)(3)=f(g(3))=f(9)=2(9)+1=19. (g∘f)(3)=g(f(3))=g(7)=7²=49. Note: they are different!'},
+];
+
+function buildPractice() {
+  const cont = document.getElementById('practice-container');
+  problems.forEach((p, i) => {
+    const diffClass = p.diff==='easy'?'tag-green':p.diff==='medium'?'tag-amber':'tag-red';
+    cont.innerHTML += `
+    <div class="pcard">
+      <div class="qmeta">
+        <span class="qnum">Problem ${i+1}</span>
+        <span class="tag ${diffClass}" style="font-size:10px;padding:1px 8px">${p.diff}</span>
+        <span class="tag tag-purple" style="font-size:10px;padding:1px 8px">${p.unit}</span>
+      </div>
+      <div class="qtxt">${p.q}</div>
+      <div class="pbtn-row">
+        <button class="pbtn pbtn-hint" onclick="toggle('hint${i}')"><i class="ti ti-bulb" style="font-size:13px;margin-right:4px"></i>Hint</button>
+        <button class="pbtn pbtn-ans" onclick="toggle('ans${i}')"><i class="ti ti-check" style="font-size:13px;margin-right:4px"></i>Show Answer</button>
+      </div>
+      <div class="hint-box" id="hint${i}">${p.hint}</div>
+      <div class="ans-box" id="ans${i}">${p.ans}</div>
+    </div>`;
+  });
+}
+
+function toggle(id) {
+  const el = document.getElementById(id);
+  el.style.display = el.style.display === 'block' ? 'none' : 'block';
+}
+
+// ─── FLASHCARDS ──────────────────────────────────────────────────
+const allCards = [
+  {t:'quadratics',q:'Quadratic Formula',a:'x = (−b ± √(b²−4ac)) / 2a'},
+  {t:'quadratics',q:'What does the discriminant tell you?',a:'b²−4ac > 0: 2 real roots\n= 0: 1 real root (double)\n< 0: 2 complex roots'},
+  {t:'quadratics',q:'Vertex form of a quadratic?',a:'f(x) = a(x−h)² + k\nvertex = (h, k)'},
+  {t:'quadratics',q:'How to find vertex from standard form?',a:'h = −b/2a\nk = f(h)'},
+  {t:'quadratics',q:'Completing the square: x²+bx → ?',a:'(x + b/2)² − (b/2)²'},
+  {t:'complex',q:'What is i²?',a:'i² = −1\n(by definition, i = √(−1))'},
+  {t:'complex',q:'What is i³?',a:'i³ = −i'},
+  {t:'complex',q:'What is i⁴?',a:'i⁴ = 1  (cycle resets)'},
+  {t:'complex',q:'How to simplify iⁿ for large n?',a:'Divide n by 4, use remainder:\n0→1,  1→i,  2→−1,  3→−i'},
+  {t:'complex',q:'How do you divide complex numbers?',a:'Multiply numerator & denominator\nby the conjugate of the denominator'},
+  {t:'complex',q:'Conjugate of (a+bi)?',a:'(a−bi)\n(a+bi)(a−bi) = a²+b²'},
+  {t:'poly',q:'Difference of squares?',a:'a²−b² = (a+b)(a−b)'},
+  {t:'poly',q:'Sum of cubes?',a:'a³+b³ = (a+b)(a²−ab+b²)\nSOAP: Same, Opposite, Always+'},
+  {t:'poly',q:'Difference of cubes?',a:'a³−b³ = (a−b)(a²+ab+b²)\nSOAP: Same, Opposite, Always+'},
+  {t:'poly',q:'Fundamental Theorem of Algebra?',a:'Degree-n polynomial has exactly n zeros\n(counting multiplicity, including complex)'},
+  {t:'poly',q:'Rational Root Theorem?',a:'Possible rational zeros =\n± (factors of constant) / (factors of leading coeff)'},
+  {t:'poly',q:'Remainder Theorem?',a:'f(x) ÷ (x−c) → remainder = f(c)\nUse synthetic substitution to evaluate f(c)'},
+  {t:'poly',q:'Multiplicity effect on graph?',a:'Even multiplicity → bounces off x-axis\nOdd multiplicity → crosses through x-axis'},
+  {t:'poly',q:'End behavior: odd degree, + leading coeff?',a:'Left: down (→ −∞)\nRight: up (→ +∞)'},
+  {t:'poly',q:'End behavior: even degree, + leading coeff?',a:'Both ends go UP (→ +∞)'},
+  {t:'log',q:'Product rule for logs?',a:'log(xy) = log x + log y'},
+  {t:'log',q:'Quotient rule for logs?',a:'log(x/y) = log x − log y'},
+  {t:'log',q:'Power rule for logs?',a:'log(xⁿ) = n · log x'},
+  {t:'log',q:'Change of base formula?',a:'log_b(x) = log x / log b\n         = ln x / ln b'},
+  {t:'log',q:'log_b(b) = ?',a:'1'},
+  {t:'log',q:'log_b(1) = ?',a:'0'},
+  {t:'log',q:'Compound interest (periodic)?',a:'A = P(1 + r/n)^(nt)\nr=rate, n=compoundings/yr, t=years'},
+  {t:'log',q:'Continuous compound interest?',a:'A = Pe^(rt)\ne ≈ 2.718'},
+  {t:'log',q:'How to solve 5^x = 20?',a:'Take ln: x·ln5 = ln20\nx = ln20 / ln5 ≈ 1.861'},
+  {t:'trig',q:'sin(30°) = ?',a:'1/2'},
+  {t:'trig',q:'cos(30°) = ?',a:'√3/2'},
+  {t:'trig',q:'sin(45°) = ?',a:'√2/2'},
+  {t:'trig',q:'cos(45°) = ?',a:'√2/2'},
+  {t:'trig',q:'sin(60°) = ?',a:'√3/2'},
+  {t:'trig',q:'cos(60°) = ?',a:'1/2'},
+  {t:'trig',q:'sin(90°) = ?',a:'1'},
+  {t:'trig',q:'cos(90°) = ?',a:'0'},
+  {t:'trig',q:'Which quadrants is sine positive?',a:'Q1 and Q2 (y-coordinate positive)'},
+  {t:'trig',q:'Which quadrants is cosine positive?',a:'Q1 and Q4 (x-coordinate positive)'},
+  {t:'trig',q:'Pythagorean identity?',a:'sin²θ + cos²θ = 1'},
+  {t:'trig',q:'Domain and range of sin⁻¹(x)?',a:'Domain: [−1, 1]\nRange: [−90°, 90°]'},
+  {t:'trig',q:'Domain and range of cos⁻¹(x)?',a:'Domain: [−1, 1]\nRange: [0°, 180°]'},
+  {t:'trig',q:'ASTC rule?',a:'"All Students Take Calculus"\nQ1=All+, Q2=Sin+, Q3=Tan+, Q4=Cos+'},
+  {t:'trig',q:'Period of y = a·sin(b·x)?',a:'Period = 360° / b'},
+  {t:'trig',q:'Law of Sines?',a:'a/sin A = b/sin B = c/sin C'},
+  {t:'trig',q:'Law of Cosines?',a:'c² = a² + b² − 2ab·cos C'},
+  {t:'seq',q:'Arithmetic sequence — explicit?',a:'aₙ = a₁ + (n−1)d\nd = common difference'},
+  {t:'seq',q:'Geometric sequence — explicit?',a:'aₙ = a₁ · rⁿ⁻¹\nr = common ratio'},
+  {t:'seq',q:'Arithmetic partial sum?',a:'Sₙ = n(a₁ + aₙ) / 2'},
+  {t:'seq',q:'Geometric partial sum?',a:'Sₙ = a₁(1 − rⁿ) / (1 − r)'},
+  {t:'seq',q:'Infinite geometric sum — when does it exist?',a:'S = a₁ / (1−r)\nOnly when |r| < 1. Diverges if |r| ≥ 1.'},
+  {t:'matrix',q:'Determinant of [[a,b],[c,d]]?',a:'det = ad − bc'},
+  {t:'matrix',q:'Inverse of 2×2 matrix?',a:'A⁻¹ = (1/det)·[[d,−b],[−c,a]]\nSwap diagonal, negate off-diagonal'},
+  {t:'matrix',q:'Solving AX = B?',a:'X = A⁻¹B\n(multiply A-inverse times B)'},
+  {t:'matrix',q:'When can you multiply A × B?',a:'Columns of A = Rows of B\nResult: (rows of A) × (cols of B)'},
+  {t:'rational',q:'Horizontal asymptote when deg(top) < deg(bottom)?',a:'y = 0'},
+  {t:'rational',q:'Horizontal asymptote when degrees are equal?',a:'y = (leading coeff of numerator) / (leading coeff of denominator)'},
+  {t:'rational',q:'What creates a hole in a rational function?',a:'A factor that cancels out when you reduce.\nThe hole is at the x-value that made that factor zero.'},
+  {t:'rational',q:'DRIVRS — what does each letter stand for?',a:'D=Domain, R=Reduce, I=Intercepts\nV=Vertical asymptotes\nR=Removable discontinuities, S=Sign chart'},
+];
+
+let currentTopic='all', filteredCards=[...allCards], currentIdx=0;
+
+function setTopic(topic,btn){
+  currentTopic=topic;
+  document.querySelectorAll('.topic-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  filteredCards=topic==='all'?[...allCards]:allCards.filter(c=>c.t===topic);
+  currentIdx=0;
+  document.getElementById('flashCard').classList.remove('flipped');
+  updateCard();
+}
+function updateCard(){
+  if(!filteredCards.length)return;
+  const c=filteredCards[currentIdx];
+  document.getElementById('flashQ').textContent=c.q;
+  document.getElementById('flashA').textContent=c.a;
+  document.getElementById('flashProg').textContent=`Card ${currentIdx+1} of ${filteredCards.length}`;
+  document.getElementById('flashCard').classList.remove('flipped');
+}
+function flipCard(){document.getElementById('flashCard').classList.toggle('flipped')}
+function nextCard(){currentIdx=(currentIdx+1)%filteredCards.length;updateCard()}
+function prevCard(){currentIdx=(currentIdx-1+filteredCards.length)%filteredCards.length;updateCard()}
+function shuffleCards(){
+  for(let i=filteredCards.length-1;i>0;i--){
+    const j=Math.floor(Math.random()*(i+1));
+    [filteredCards[i],filteredCards[j]]=[filteredCards[j],filteredCards[i]];
+  }
+  currentIdx=0;updateCard();
+}
+
+// ─── UNIT PAGES ──────────────────────────────────────────────────
+const units = [
+  {
+    num:'I', title:'Intro & Lines',
+    tabs:['Sets & Properties','Lines','Functions','Transformations','Piecewise & Abs Val'],
+    content:[
+      `<div class="card"><h2>Sets of Numbers</h2>
+      <div class="grid grid-3">
+        <div class="card-sm"><div class="card-label">ℕ Natural</div><div class="card-mono">1, 2, 3, ...</div></div>
+        <div class="card-sm"><div class="card-label">ℤ Integers</div><div class="card-mono">..., −2, −1, 0, 1, 2, ...</div></div>
+        <div class="card-sm"><div class="card-label">ℚ Rational</div><div class="card-mono">p/q, q ≠ 0</div></div>
+        <div class="card-sm"><div class="card-label">ℝ Real</div><div class="card-mono">rationals + irrationals</div></div>
+        <div class="card-sm"><div class="card-label">ℂ Complex</div><div class="card-mono">a + bi</div></div>
+      </div>
+      <h3>Key Properties</h3>
+      <ul class="blist"><li>Commutative: a+b=b+a, ab=ba</li><li>Associative: (a+b)+c=a+(b+c)</li><li>Distributive: a(b+c)=ab+ac</li><li>Identity: a+0=a, a·1=a</li><li>Inverse: a+(−a)=0, a·(1/a)=1</li></ul></div>`,
+
+      `<div class="card"><h2>Equations of Lines</h2>
+      <div class="grid grid-2">
+        <div class="card-sm"><div class="card-label">Slope-Intercept</div><div class="card-mono">y = mx + b</div><div class="card-note">m = slope, b = y-intercept</div></div>
+        <div class="card-sm"><div class="card-label">Point-Slope</div><div class="card-mono">y − y₁ = m(x − x₁)</div></div>
+        <div class="card-sm"><div class="card-label">Slope</div><div class="card-mono">m = (y₂−y₁)/(x₂−x₁)</div></div>
+        <div class="card-sm"><div class="card-label">Standard</div><div class="card-mono">Ax + By = C</div></div>
+      </div>
+      <h3>Parallel & Perpendicular</h3>
+      <ul class="blist"><li>Parallel: same slope (m₁=m₂), different y-intercepts</li><li>Perpendicular: negative reciprocal slopes (m₁·m₂=−1)</li></ul>
+      <div class="warn"><i class="ti ti-alert-triangle"></i>Vertical lines (x=c) have undefined slope. Horizontal lines (y=c) have slope 0. Common trick question!</div></div>`,
+
+      `<div class="card"><h2>Functions & Relations</h2>
+      <ul class="blist"><li>A relation is any set of ordered pairs</li><li>A function assigns exactly ONE output to each input (vertical line test)</li><li>Domain = all valid x-values (inputs)</li><li>Range = all resulting y-values (outputs)</li></ul>
+      <h3>Function Notation</h3>
+      <p>f(x) = value of f when input is x. Evaluate by substituting x.</p>
+      <div class="formula">If f(x) = 2x+1, then f(3) = 2(3)+1 = 7</div>
+      <div class="warn"><i class="ti ti-alert-triangle"></i>f(x+h) ≠ f(x)+h — you must substitute the entire (x+h) into the function.</div></div>`,
+
+      `<div class="card"><h2>Transformations of f(x)</h2>
+      <div class="grid grid-2">
+        <div>
+          <h3>Vertical</h3>
+          <ul class="blist"><li>f(x) + k → shift UP k</li><li>f(x) − k → shift DOWN k</li><li>−f(x) → reflect over x-axis</li><li>a·f(x), a>1 → vertical stretch</li><li>a·f(x), 0&lt;a&lt;1 → vertical shrink</li></ul>
+        </div>
+        <div>
+          <h3>Horizontal</h3>
+          <ul class="blist"><li>f(x−h) → shift RIGHT h</li><li>f(x+h) → shift LEFT h</li><li>f(−x) → reflect over y-axis</li></ul>
+        </div>
+      </div>
+      <div class="warn"><i class="ti ti-alert-triangle"></i>Horizontal shifts are counterintuitive! f(x−3) shifts RIGHT 3. The sign inside is opposite the direction.</div></div>`,
+
+      `<div class="card"><h2>Piecewise Functions</h2>
+      <p>Different formulas for different parts of the domain. Evaluate by finding which piece applies.</p>
+      <div class="formula">f(x) = { x+2   if x &lt; 0
+        { x²    if x ≥ 0</div>
+      <h3>Absolute Value as Piecewise</h3>
+      <div class="formula">|x| = {  x   if x ≥ 0
+      { −x  if x &lt; 0</div>
+      <h3>Solving Absolute Value Inequalities</h3>
+      <ul class="blist"><li>|x| &lt; a → −a &lt; x &lt; a (AND — sandwich)</li><li>|x| &gt; a → x &lt; −a OR x &gt; a (OR — splits apart)</li></ul></div>`
+    ]
+  },
+  {
+    num:'II', title:'Quadratic Functions',
+    tabs:['Three Forms','Solving Methods','Complex Numbers'],
+    content:[
+      `<div class="card"><h2>Three Forms of a Quadratic</h2>
+      <div class="grid grid-3">
+        <div class="card-sm"><div class="card-label">Standard Form</div><div class="card-mono">f(x) = ax²+bx+c</div><div class="card-note">Easy y-intercept (c), use quadratic formula</div></div>
+        <div class="card-sm"><div class="card-label">Vertex Form</div><div class="card-mono">f(x) = a(x−h)²+k</div><div class="card-note">Vertex=(h,k). Best for graphing & transformations</div></div>
+        <div class="card-sm"><div class="card-label">Factored Form</div><div class="card-mono">f(x) = a(x−r₁)(x−r₂)</div><div class="card-note">Zeros are r₁ and r₂. Best for finding x-intercepts</div></div>
+      </div></div>`,
+
+      `<div class="card"><h2>Solving Methods</h2>
+      <ol class="slist">
+        <li><strong>Factoring</strong> — fastest when it works cleanly</li>
+        <li><strong>Square Root Method</strong> — when in (x−h)²=k form</li>
+        <li><strong>Completing the Square</strong> — convert to vertex form</li>
+        <li><strong>Quadratic Formula</strong> — always works: x=(−b±√(b²−4ac))/2a</li>
+      </ol>
+      <div class="warn"><i class="ti ti-alert-triangle"></i>When b²−4ac &lt; 0, solutions are complex. You get two conjugates: x = p ± qi</div></div>`,
+
+      `<div class="card"><h2>Complex Numbers</h2>
+      <ul class="blist"><li>i = √(−1), so i² = −1</li><li>Standard form: a + bi (a=real, b=imaginary)</li><li>Add/Subtract: combine like terms</li><li>Multiply: FOIL, replace i² with −1</li><li>Divide: multiply by conjugate of denominator</li></ul>
+      <h3>Powers of i — Cycle of 4</h3>
+      <div class="formula">i¹=i    i²=−1    i³=−i    i⁴=1    i⁵=i  (repeats)</div>
+      <p>For iⁿ: compute n mod 4. Remainder gives the value.</p></div>`
+    ]
+  },
+  {
+    num:'III', title:'Systems & Matrices',
+    tabs:['Linear Systems','Inequalities','Matrix Arithmetic','Inverse & Solving','Quadratic Systems'],
+    content:[
+      `<div class="card"><h2>Solving Linear Systems</h2>
+      <h3>Substitution</h3>
+      <ol class="slist"><li>Solve one equation for one variable</li><li>Substitute into the other equation</li><li>Solve, then back-substitute</li></ol>
+      <h3>Elimination</h3>
+      <ol class="slist"><li>Multiply equations to make one variable's coefficients opposites</li><li>Add equations to eliminate that variable</li><li>Solve and back-substitute</li></ol>
+      <h3>3×3 Systems</h3>
+      <ol class="slist"><li>Eliminate same variable from two pairs of equations → get a 2×2 system</li><li>Solve the 2×2</li><li>Back-substitute to find all three variables</li></ol></div>`,
+
+      `<div class="card"><h2>Graphing Systems of Inequalities</h2>
+      <ol class="slist"><li>Graph each inequality (dashed line for strict &lt; or &gt;, solid for ≤ or ≥)</li><li>Shade the correct half-plane for each inequality</li><li>The solution is the overlapping shaded region</li></ol>
+      <div class="warn"><i class="ti ti-alert-triangle"></i>For quadratic inequalities, the boundary is a parabola. Test a point inside to determine which region to shade.</div></div>`,
+
+      `<div class="card"><h2>Matrix Arithmetic</h2>
+      <h3>Addition/Subtraction</h3>
+      <p>Matrices must be the same size. Add/subtract corresponding entries.</p>
+      <h3>Scalar Multiplication</h3>
+      <p>Multiply every entry in the matrix by the scalar.</p>
+      <h3>Matrix Multiplication (A × B)</h3>
+      <ul class="blist"><li>Columns of A must equal rows of B</li><li>Result size: (rows of A) × (columns of B)</li><li>Each entry = dot product of a row from A with a column from B</li></ul>
+      <div class="warn"><i class="ti ti-alert-triangle"></i>Matrix multiplication is NOT commutative! AB ≠ BA in general.</div></div>`,
+
+      `<div class="card"><h2>Determinant & Inverse</h2>
+      <div class="formula">det [[a,b],[c,d]] = ad − bc</div>
+      <div class="formula">A⁻¹ = (1/(ad−bc)) · [[d, −b],[−c,  a]]</div>
+      <p style="font-size:13px;color:var(--text2)">Steps: (1) Find det. (2) Swap main diagonal (a↔d). (3) Negate b and c. (4) Divide all by det.</p>
+      <div class="warn"><i class="ti ti-alert-triangle"></i>If det = 0, the inverse does NOT exist! The system has no unique solution.</div>
+      <h3>Solving AX = B</h3>
+      <div class="formula">X = A⁻¹B</div></div>`,
+
+      `<div class="card"><h2>Quadratic Systems</h2>
+      <ol class="slist"><li>Substitute one equation into the other (or set equal)</li><li>Rearrange to get a quadratic = 0</li><li>Solve (factor or quadratic formula)</li><li>Substitute x-values back in to get y-values</li><li>Always check — extraneous solutions can appear!</li></ol>
+      <div class="warn"><i class="ti ti-alert-triangle"></i>Check every solution in BOTH original equations. A value might satisfy one but not the other.</div></div>`
+    ]
+  },
+  {
+    num:'IV', title:'Polynomial Functions',
+    tabs:['Factoring','Pascal\'s Triangle','Dividing','Finding Zeros','Graphing'],
+    content:[
+      `<div class="card"><h2>Factoring Strategies — Always in This Order</h2>
+      <ol class="slist">
+        <li><strong>GCF first</strong> — always pull out common factors first</li>
+        <li><strong>Difference of Squares</strong>: a²−b² = (a+b)(a−b)</li>
+        <li><strong>Sum of Cubes</strong>: a³+b³ = (a+b)(a²−ab+b²)</li>
+        <li><strong>Difference of Cubes</strong>: a³−b³ = (a−b)(a²+ab+b²)</li>
+        <li><strong>Trinomial (a=1)</strong>: x²+bx+c = (x+p)(x+q) where pq=c, p+q=b</li>
+        <li><strong>Trinomial (a≠1)</strong>: multiply a·c, find factors, split middle term, group</li>
+        <li><strong>Grouping</strong>: for 4-term polynomials — factor in two pairs</li>
+      </ol></div>`,
+
+      `<div class="card"><h2>Pascal's Triangle — Binomial Expansion</h2>
+      <div class="formula">Row 0:  1
+Row 1:  1  1
+Row 2:  1  2  1
+Row 3:  1  3  3  1
+Row 4:  1  4  6  4  1
+Row 5:  1  5  10  10  5  1</div>
+      <p>Each row gives the coefficients for (a+b)ⁿ. The power of a decreases, b increases.</p>
+      <div class="formula">(a+b)³ = 1a³ + 3a²b + 3ab² + 1b³</div></div>`,
+
+      `<div class="card"><h2>Dividing Polynomials</h2>
+      <h3>Long Division</h3>
+      <p>Works for any divisor. Divide, multiply, subtract, bring down — just like number long division.</p>
+      <h3>Synthetic Division</h3>
+      <p>Only works for (x − c). Use c (positive!) in the box.</p>
+      <ol class="slist"><li>Write all coefficients (insert 0 for missing terms)</li><li>Bring down the first coefficient</li><li>Multiply by c, add to next coefficient. Repeat.</li><li>Last number = remainder; others = quotient coefficients</li></ol>
+      <h3>Remainder Theorem</h3>
+      <p>When f(x) is divided by (x−c), the remainder equals f(c). Synthetic substitution is a fast way to evaluate f(c).</p></div>`,
+
+      `<div class="card"><h2>Finding All Zeros</h2>
+      <h3>Rational Root Theorem</h3>
+      <div class="formula">Possible rational zeros = ± (factors of constant term) / (factors of leading coeff)</div>
+      <ol class="slist"><li>List all possible rational zeros</li><li>Test each (synthetic substitution)</li><li>When you find a zero, divide to get a lower-degree quotient</li><li>Repeat until you reach a quadratic, then use the quadratic formula</li></ol>
+      <div class="warn"><i class="ti ti-alert-triangle"></i>Complex zeros always come in conjugate pairs when coefficients are real. If 2+3i is a zero, so is 2−3i.</div></div>`,
+
+      `<div class="card"><h2>Graphing from Factored Form</h2>
+      <ul class="blist"><li>x-intercepts: set each factor = 0</li><li>y-intercept: plug in x = 0</li><li>End behavior: check degree and sign of leading coeff (LRB)</li><li>Even multiplicity at a zero → graph bounces (tangent to x-axis)</li><li>Odd multiplicity → graph crosses through</li></ul>
+      <h3>Finding 'a' from a Graph</h3>
+      <div class="formula">f(x) = a(x−r₁)(x−r₂)(x−r₃)
+Use a known point → plug in → solve for a</div></div>`
+    ]
+  },
+  {
+    num:'V', title:'Rational Functions',
+    tabs:['Simplifying','DRIVRS','Inequalities','Solving'],
+    content:[
+      `<div class="card"><h2>Simplifying Rational Expressions</h2>
+      <ol class="slist"><li>Factor numerator and denominator completely</li><li>Cancel common factors (creates holes in the graph!)</li><li>State domain restrictions (values making original denominator = 0)</li></ol>
+      <h3>Multiply/Divide</h3>
+      <ul class="blist"><li>Multiply: factor everything, cancel across fractions, multiply across</li><li>Divide: flip the second fraction, then multiply</li></ul>
+      <h3>Add/Subtract</h3>
+      <ol class="slist"><li>Find the LCD</li><li>Rewrite each fraction with LCD</li><li>Add/subtract numerators, keep denominator</li><li>Simplify the result</li></ol></div>`,
+
+      `<div class="card"><h2>DRIVRS — Graphing Rational Functions</h2>
+      <div class="drivrs-row"><div class="drivrs-letter">D</div><div style="font-size:13px;color:var(--text2)"><strong style="color:var(--text)">Domain</strong> — values where denominator ≠ 0</div></div>
+      <div class="drivrs-row"><div class="drivrs-letter">R</div><div style="font-size:13px;color:var(--text2)"><strong style="color:var(--text)">Reduce</strong> — factor and cancel common factors</div></div>
+      <div class="drivrs-row"><div class="drivrs-letter">I</div><div style="font-size:13px;color:var(--text2)"><strong style="color:var(--text)">Intercepts</strong> — x-int: reduced numerator=0; y-int: f(0)</div></div>
+      <div class="drivrs-row"><div class="drivrs-letter">V</div><div style="font-size:13px;color:var(--text2)"><strong style="color:var(--text)">Vertical Asymptotes</strong> — zeros of reduced denominator</div></div>
+      <div class="drivrs-row"><div class="drivrs-letter">R</div><div style="font-size:13px;color:var(--text2)"><strong style="color:var(--text)">Removable Discontinuities</strong> — cancelled factors → holes (find y in reduced form)</div></div>
+      <div class="drivrs-row"><div class="drivrs-letter">S</div><div style="font-size:13px;color:var(--text2)"><strong style="color:var(--text)">Sign Chart</strong> — determine +/− between key x-values</div></div>
+      <div style="margin-top:14px;padding-top:14px;border-top:1px solid var(--border)">
+        <div class="card-label" style="margin-bottom:8px">Horizontal Asymptotes</div>
+        <ul class="blist"><li>deg(top) &lt; deg(bottom) → HA: y = 0</li><li>Degrees equal → HA: y = leading coefficients ratio</li><li>deg(top) &gt; deg(bottom) → no HA</li></ul>
+      </div></div>`,
+
+      `<div class="card"><h2>Sign Charts for Inequalities</h2>
+      <ol class="slist"><li>Move all terms to one side</li><li>Factor completely</li><li>Find all zeros and vertical asymptotes</li><li>Plot as key points on a number line</li><li>Test a value in each interval → determine sign</li><li>Select correct intervals</li></ol>
+      <div class="warn"><i class="ti ti-alert-triangle"></i>Include zeros for ≤ or ≥. NEVER include vertical asymptotes (the function is undefined there).</div></div>`,
+
+      `<div class="card"><h2>Solving Rational Equations</h2>
+      <ol class="slist"><li>Find the LCD</li><li>Multiply both sides by LCD to clear fractions</li><li>Solve the resulting polynomial equation</li><li>CHECK solutions — any value that makes the original denominator = 0 is EXTRANEOUS</li></ol>
+      <div class="warn"><i class="ti ti-alert-triangle"></i>Always check for extraneous solutions! This is almost always tested.</div></div>`
+    ]
+  },
+  {
+    num:'VI', title:'Radicals & Rational Exponents',
+    tabs:['Exponent Rules','Radical Equations','Graphing Roots'],
+    content:[
+      `<div class="card"><h2>Fractional Exponents & Exponent Rules</h2>
+      <div class="grid grid-3">
+        <div class="card-sm"><div class="card-label">x^(1/n)</div><div class="card-mono">= ⁿ√x</div></div>
+        <div class="card-sm"><div class="card-label">x^(m/n)</div><div class="card-mono">= ⁿ√(xᵐ) = (ⁿ√x)ᵐ</div></div>
+        <div class="card-sm"><div class="card-label">x^(−n)</div><div class="card-mono">= 1/xⁿ</div></div>
+        <div class="card-sm"><div class="card-label">Product Rule</div><div class="card-mono">xᵃ · xᵇ = x^(a+b)</div></div>
+        <div class="card-sm"><div class="card-label">Quotient Rule</div><div class="card-mono">xᵃ / xᵇ = x^(a−b)</div></div>
+        <div class="card-sm"><div class="card-label">Power Rule</div><div class="card-mono">(xᵃ)ᵇ = x^(ab)</div></div>
+      </div></div>`,
+
+      `<div class="card"><h2>Solving Radical Equations</h2>
+      <ol class="slist"><li>Isolate the radical on one side</li><li>Raise both sides to the appropriate power</li><li>Solve the resulting equation</li><li>CHECK every solution in the ORIGINAL equation</li></ol>
+      <div class="warn"><i class="ti ti-alert-triangle"></i>Squaring can introduce extraneous solutions. Any solution making the original side negative under an even root is extraneous.</div></div>`,
+
+      `<div class="card"><h2>Graphing Square & Cube Root Functions</h2>
+      <ul class="blist"><li>y=√x: domain x≥0, starts at origin, goes right and up</li><li>y=∛x: domain = all reals, passes through origin, goes both ways</li><li>Transformations work the same as all other functions</li><li>Domain of √(stuff): set stuff ≥ 0 and solve</li></ul></div>`
+    ]
+  },
+  {
+    num:'VIb', title:'Function Combos & Inverses',
+    tabs:['Operations','Composition','Inverse Functions'],
+    content:[
+      `<div class="card"><h2>Combining Functions</h2>
+      <div class="formula">(f+g)(x) = f(x)+g(x)
+(f−g)(x) = f(x)−g(x)
+(f·g)(x) = f(x)·g(x)
+(f/g)(x) = f(x)/g(x),  g(x)≠0</div>
+      <p>Domain = intersection of individual domains, minus any new restrictions (like division by zero).</p></div>`,
+
+      `<div class="card"><h2>Function Composition</h2>
+      <div class="formula">(f∘g)(x) = f(g(x))</div>
+      <p>Work inside out: evaluate g first, plug result into f.</p>
+      <ul class="blist"><li>f∘g ≠ g∘f in general (NOT commutative)</li><li>Domain of f∘g: all x in domain of g where g(x) is in domain of f</li></ul>
+      <h3>From Tables or Graphs</h3>
+      <p>For (f∘g)(3): find g(3) from g-table first, then find f of that value.</p></div>`,
+
+      `<div class="card"><h2>Inverse Functions</h2>
+      <ul class="blist"><li>f⁻¹ undoes f: f(f⁻¹(x))=x and f⁻¹(f(x))=x</li><li>To find algebraically: swap x and y, solve for y</li><li>Graph: reflect over the line y=x</li><li>Domain of f⁻¹ = Range of f</li><li>Range of f⁻¹ = Domain of f</li></ul>
+      <div class="warn"><i class="ti ti-alert-triangle"></i>A function must be one-to-one (passes horizontal line test) to have an inverse. You may need to restrict the domain.</div></div>`
+    ]
+  },
+  {
+    num:'VII', title:'Exponential & Logarithms',
+    tabs:['Exponential','Log Laws','Solving','Modeling'],
+    content:[
+      `<div class="card"><h2>Exponential Functions</h2>
+      <div class="formula">f(x) = a · bˣ + k</div>
+      <ul class="blist"><li>a = initial value / y-intercept (when no shift)</li><li>b > 1 → exponential growth</li><li>0 &lt; b &lt; 1 → exponential decay</li><li>Natural base: e ≈ 2.718 (used for continuous models)</li></ul>
+      <h3>Interest Formulas</h3>
+      <div class="formula">Periodic:    A = P(1 + r/n)^(nt)
+Continuous:  A = Pe^(rt)</div>
+      <p style="font-size:13px;color:var(--text2)">P=principal, r=annual rate (decimal), n=compoundings/year, t=years</p></div>`,
+
+      `<div class="card"><h2>Laws of Logarithms</h2>
+      <div class="grid grid-2">
+        <div class="card-sm"><div class="card-label">Product</div><div class="card-mono">log(xy) = log x + log y</div></div>
+        <div class="card-sm"><div class="card-label">Quotient</div><div class="card-mono">log(x/y) = log x − log y</div></div>
+        <div class="card-sm"><div class="card-label">Power</div><div class="card-mono">log(xⁿ) = n · log x</div></div>
+        <div class="card-sm"><div class="card-label">Change of Base</div><div class="card-mono">log_b x = log x / log b</div></div>
+      </div>
+      <h3>Converting Exponential ↔ Log</h3>
+      <div class="formula">bˣ = y  ↔  log_b(y) = x</div></div>`,
+
+      `<div class="card"><h2>Solving Equations</h2>
+      <h3>Exponential Equations</h3>
+      <ol class="slist"><li>Try to get same base on both sides, or</li><li>Take ln (or log) of both sides</li><li>Use power rule to bring down exponent</li><li>Solve for variable</li></ol>
+      <div class="formula">3^(2x) = 15 → 2x·ln3 = ln15 → x = ln15/(2·ln3)</div>
+      <h3>Logarithmic Equations</h3>
+      <ol class="slist"><li>Combine into a single log using log laws</li><li>Convert to exponential form</li><li>Solve and CHECK (log argument must be positive!)</li></ol></div>`,
+
+      `<div class="card"><h2>Modeling with Exp & Log</h2>
+      <ul class="blist"><li>Growth: A = A₀·e^(kt), k&gt;0</li><li>Decay: A = A₀·e^(−kt), k&gt;0</li><li>Half-life: find k from t½, then use the formula</li><li>Doubling time: set A=2A₀, solve for t</li></ul>
+      <div class="formula">Doubling: 2 = e^(rt) → t = ln2/r
+Half-life: 0.5 = e^(−kt) → t½ = ln2/k</div></div>`
+    ]
+  },
+  {
+    num:'VIII', title:'Sequences & Series',
+    tabs:['Arithmetic','Geometric','Sigma Notation'],
+    content:[
+      `<div class="card"><h2>Arithmetic Sequences</h2>
+      <div class="grid grid-2">
+        <div class="card-sm"><div class="card-label">Explicit Formula</div><div class="card-mono">aₙ = a₁ + (n−1)d</div><div class="card-note">d = common difference (add each term)</div></div>
+        <div class="card-sm"><div class="card-label">Recursive Formula</div><div class="card-mono">a₁ = ___, aₙ = aₙ₋₁ + d</div></div>
+        <div class="card-sm"><div class="card-label">Partial Sum Sₙ</div><div class="card-mono">Sₙ = n(a₁ + aₙ) / 2</div><div class="card-note">"average of first and last, times n"</div></div>
+      </div></div>`,
+
+      `<div class="card"><h2>Geometric Sequences</h2>
+      <div class="grid grid-2">
+        <div class="card-sm"><div class="card-label">Explicit Formula</div><div class="card-mono">aₙ = a₁ · rⁿ⁻¹</div><div class="card-note">r = common ratio (multiply each term)</div></div>
+        <div class="card-sm"><div class="card-label">Recursive Formula</div><div class="card-mono">a₁ = ___, aₙ = r · aₙ₋₁</div></div>
+        <div class="card-sm"><div class="card-label">Partial Sum Sₙ</div><div class="card-mono">Sₙ = a₁(1 − rⁿ) / (1 − r)</div></div>
+        <div class="card-sm"><div class="card-label">Infinite Sum</div><div class="card-mono">S = a₁ / (1 − r)<br>only if |r| &lt; 1</div><div class="card-note">If |r| ≥ 1: series diverges, no sum</div></div>
+      </div></div>`,
+
+      `<div class="card"><h2>Sigma Notation</h2>
+      <div class="formula">Σ (k=1 to n) of aₖ = a₁ + a₂ + ... + aₙ</div>
+      <ul class="blist"><li>The expression after Σ is the general term formula</li><li>Substitute k = 1, 2, 3, ..., n and add all the results</li><li>Identify arithmetic or geometric → use appropriate sum formula</li></ul></div>`
+    ]
+  },
+  {
+    num:'IX', title:'Trigonometry',
+    tabs:['Right Triangle','Unit Circle','Graphing','Inverse Trig','Laws'],
+    content:[
+      `<div class="card"><h2>SOHCAHTOA & General Ratios</h2>
+      <div class="formula">sin θ = opp/hyp    cos θ = adj/hyp    tan θ = opp/adj</div>
+      <h3>For General Angles on a Circle (x, y, r):</h3>
+      <div class="formula">sin θ = y/r    cos θ = x/r    tan θ = y/x
+csc θ = r/y    sec θ = r/x    cot θ = x/y</div>
+      <h3>Reference Angles</h3>
+      <ul class="blist"><li>Q1: ref = θ</li><li>Q2: ref = 180°−θ</li><li>Q3: ref = θ−180°</li><li>Q4: ref = 360°−θ</li></ul></div>`,
+
+      `<div class="card"><h2>Unit Circle (r = 1)</h2>
+      <p>cos θ = x-coordinate, sin θ = y-coordinate</p>
+      <div class="uc-table" style="margin:12px 0">
+        <div class="uc-cell"><div class="uc-deg">0°</div><div class="uc-coords">(1, 0)</div></div>
+        <div class="uc-cell"><div class="uc-deg">30°</div><div class="uc-coords">(√3/2, 1/2)</div></div>
+        <div class="uc-cell"><div class="uc-deg">45°</div><div class="uc-coords">(√2/2, √2/2)</div></div>
+        <div class="uc-cell"><div class="uc-deg">60°</div><div class="uc-coords">(1/2, √3/2)</div></div>
+        <div class="uc-cell"><div class="uc-deg">90°</div><div class="uc-coords">(0, 1)</div></div>
+      </div>
+      <div class="astc">
+        <div class="astc-cell"><strong>Q1 — All +</strong></div>
+        <div class="astc-cell"><strong>Q2 — Sin +</strong></div>
+        <div class="astc-cell"><strong>Q3 — Tan +</strong></div>
+        <div class="astc-cell"><strong>Q4 — Cos +</strong></div>
+      </div>
+      <p style="font-size:11px;color:var(--text3);margin-top:8px">"All Students Take Calculus"</p>
+      <h3>Finding θ Given Trig Value</h3>
+      <ol class="slist"><li>Find the reference angle (what special angle gives this absolute value?)</li><li>Determine which quadrants have the correct sign (ASTC)</li><li>Find both angles using reference angle and those quadrants</li></ol></div>`,
+
+      `<div class="card"><h2>Graphing Trig Functions</h2>
+      <div class="formula">y = a·sin(b(x−h)) + k</div>
+      <div class="grid grid-2">
+        <div class="card-sm"><div class="card-label">Amplitude</div><div class="card-mono">|a| — half the height</div><div class="card-note">Negative a flips the graph</div></div>
+        <div class="card-sm"><div class="card-label">Period</div><div class="card-mono">360° / b</div><div class="card-note">Larger b → shorter (faster) period</div></div>
+        <div class="card-sm"><div class="card-label">Phase Shift</div><div class="card-mono">h — horizontal shift</div><div class="card-note">sin(b(x−h)) shifts RIGHT h</div></div>
+        <div class="card-sm"><div class="card-label">Vertical Shift</div><div class="card-mono">k — midline is y=k</div></div>
+      </div>
+      <div class="warn"><i class="ti ti-alert-triangle"></i>Tangent: period = 180° (not 360°). Vertical asymptotes where cos=0. No amplitude.</div></div>`,
+
+      `<div class="card"><h2>Inverse Trig Functions</h2>
+      <div class="grid grid-3">
+        <div class="card-sm"><div class="card-label">sin⁻¹(x)</div><div class="card-mono">Domain: [−1,1]<br>Range: [−90°,90°]</div></div>
+        <div class="card-sm"><div class="card-label">cos⁻¹(x)</div><div class="card-mono">Domain: [−1,1]<br>Range: [0°,180°]</div></div>
+        <div class="card-sm"><div class="card-label">tan⁻¹(x)</div><div class="card-mono">Domain: all ℝ<br>Range: (−90°,90°)</div></div>
+      </div>
+      <h3>Evaluating cos(sin⁻¹(x)) type problems</h3>
+      <ol class="slist"><li>Let θ = sin⁻¹(value), so sinθ = value</li><li>Draw right triangle: label opp and hyp from sinθ</li><li>Find missing side with Pythagorean theorem</li><li>Read off the required trig ratio from the triangle</li></ol></div>`,
+
+      `<div class="card"><h2>Law of Sines & Cosines</h2>
+      <div class="grid grid-2">
+        <div class="card-sm"><div class="card-label">Law of Sines</div><div class="card-mono">a/sin A = b/sin B = c/sin C</div><div class="card-note">Use for AAS, ASA, or SSA</div></div>
+        <div class="card-sm"><div class="card-label">Law of Cosines</div><div class="card-mono">c² = a²+b²−2ab·cos C</div><div class="card-note">Use for SAS or SSS</div></div>
+      </div>
+      <div class="warn"><i class="ti ti-alert-triangle"></i>SSA is the ambiguous case — might give 0, 1, or 2 triangles. Check if the side is long enough to reach.</div></div>`
+    ]
+  }
+];
+
+function showUnit(idx) {
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('page-unit').classList.add('active');
+  document.getElementById('nav-u'+idx).classList.add('active');
+  const u = units[idx];
+  let tabsHtml = u.tabs.map((t,i)=>`<button class="tab ${i===0?'active':''}" onclick="switchUTab(${idx},${i})">${t}</button>`).join('');
+  let contentHtml = u.content.map((c,i)=>`<div id="ut_${idx}_${i}" style="${i===0?'':'display:none'}">${c}</div>`).join('');
+  document.getElementById('unitContent').innerHTML = `
+    <div class="page-header">
+      <div style="font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--purple);font-family:var(--mono);margin-bottom:4px">Unit ${u.num}</div>
+      <div class="page-title">${u.title}</div>
+    </div>
+    <div class="tabs">${tabsHtml}</div>
+    ${contentHtml}`;
+  closeSidebar();
+}
+
+function switchUTab(unitIdx, tabIdx) {
+  const u = units[unitIdx];
+  document.querySelectorAll('.tab').forEach((t,i)=>t.classList.toggle('active',i===tabIdx));
+  u.content.forEach((_,i)=>{
+    const el=document.getElementById(`ut_${unitIdx}_${i}`);
+    if(el) el.style.display = i===tabIdx?'block':'none';
+  });
+}
+
+// ─── INIT ────────────────────────────────────────────────────────
+buildPractice();
+updateCard();
+</script>
+</body>
+</html>
